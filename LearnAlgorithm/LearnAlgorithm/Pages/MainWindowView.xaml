@@ -1,0 +1,51 @@
+﻿<mah:MetroWindow x:Class="LearnAlgorithm.Pages.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LearnAlgorithm.Pages"
+        mc:Ignorable="d"
+        xmlns:s="https://github.com/canton7/Stylet" 
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Learn Algorithm"  
+        WindowState="Maximized"
+        Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="300"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <!--主界面-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Column="0" 
+                      Margin="5"
+                      ItemsSource="{Binding MenuItemList}"
+                      SelectedIndex="{Binding SelectedIndex}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Title,Mode=OneWay}" VerticalAlignment="Center" Margin="2"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Border Grid.Column="1" BorderThickness="2 0 0 0" BorderBrush="LightGray">
+                <ContentControl   s:View.Model="{Binding ActiveItem}" Margin="5"/>
+            </Border>
+        </Grid>
+
+        <!--状态栏-->
+        <StatusBar Grid.Row="1">
+            <StatusBarItem Content="Ready" Width="188" Margin="10 0 0 0"/>
+            <Separator Background="Transparent"/>          
+            <StatusBarItem Content="V1.0.0" HorizontalAlignment="Right" Width="120"/>
+        </StatusBar>
+    </Grid>
+</mah:MetroWindow>
