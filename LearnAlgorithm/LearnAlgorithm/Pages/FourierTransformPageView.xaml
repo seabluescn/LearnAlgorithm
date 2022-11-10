@@ -11,26 +11,50 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="220"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0">
-            <Controls:WaveGraphics />
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="*"/>
+            </Grid.RowDefinitions>
+            <Controls:WaveGraphics Grid.Row="0" WaveGraphicsData="{Binding WaveData}" Margin="10"/>
+            <Controls:WaveGraphics Grid.Row="1" WaveGraphicsData="{Binding FreqencyData}" Margin="10"/>
+            <Controls:WaveGraphics Grid.Row="2" WaveGraphicsData="{Binding NewWaveData}" Margin="10"/>
         </Grid>
 
-        <Canvas Grid.Column="1">
-            <TextBlock Text="DC:" Canvas.Left="10" Canvas.Top="39"/>
-            <mah:NumericUpDown Canvas.Left="111" Canvas.Top="34" HorizontalAlignment="Left" VerticalAlignment="Center" Width="79"  />
+        <Canvas Grid.Column="1" >
+            <TextBlock Text="Sample=10kS/s t=0.1s Len=1000" Canvas.Left="11" Canvas.Top="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <TextBlock Text="SignalⅠ(50Hz):" Canvas.Left="10" Canvas.Top="75" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <mah:NumericUpDown Canvas.Left="111" Canvas.Top="69" HorizontalAlignment="Center" VerticalAlignment="Top" Width="79"  />
+            <TextBlock Text="DC" Canvas.Left="88" Canvas.Top="43"/>
+            <TextBlock Text="Amplifier:" Canvas.Left="30" Canvas.Top="73" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <mah:NumericUpDown Value="{Binding Vdc}" Canvas.Left="104" Canvas.Top="68" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  />
 
-            <TextBlock Text="SignalⅡ(150Hz):" Canvas.Left="10" Canvas.Top="105" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <mah:NumericUpDown Canvas.Left="111" Canvas.Top="100" HorizontalAlignment="Center" VerticalAlignment="Top" Width="79"  />
+            <TextBlock Text="Signal Ⅰ" Canvas.Left="79" Canvas.Top="110" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Text="Frequency:" Canvas.Left="20" Canvas.Top="138" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding F1}" Canvas.Left="104" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Minimum="10" Maximum="1000"/>
+            <TextBlock Text="Amplifier:" Canvas.Left="27" Canvas.Top="171" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding Vp1}" Canvas.Left="104" Canvas.Top="166" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  />
 
-            <TextBlock Text="SignalⅢ(400Hz):" Canvas.Left="10" Canvas.Top="135" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <mah:NumericUpDown Canvas.Left="111" Canvas.Top="130" HorizontalAlignment="Center" VerticalAlignment="Top" Width="79"  />
+            <TextBlock Text="Signal Ⅱ" Canvas.Left="79" Canvas.Top="210" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Text="Frequency:" Canvas.Left="20" Canvas.Top="238" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding F2}" Canvas.Left="104" Canvas.Top="232" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  Minimum="10" Maximum="1000"/>
+            <TextBlock Text="Amplifier:" Canvas.Left="27" Canvas.Top="271" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding Vp2}" Canvas.Left="104" Canvas.Top="266" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  />
 
+            <TextBlock Text="Signal Ⅲ" Canvas.Left="79" Canvas.Top="310" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Text="Frequency:" Canvas.Left="20" Canvas.Top="338" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding F3}" Canvas.Left="104" Canvas.Top="332" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  Minimum="10" Maximum="1000"/>
+            <TextBlock Text="Amplifier:" Canvas.Left="27" Canvas.Top="371" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding Vp3}" Canvas.Left="104" Canvas.Top="366" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  />
+
+            <TextBlock Text="Bandpass Filter" Canvas.Left="71" Canvas.Top="413" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="Low:" Canvas.Left="42" Canvas.Top="438" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding Low}" Canvas.Left="104" Canvas.Top="432" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"  Minimum="0" Maximum="1000"/>
+            <TextBlock Text="High:" Canvas.Left="38" Canvas.Top="471" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <mah:NumericUpDown Value="{Binding High}" Canvas.Left="104" Canvas.Top="466" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Minimum="10" Maximum="1000" />
 
         </Canvas>
     </Grid>
