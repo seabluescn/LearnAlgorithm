@@ -98,7 +98,7 @@ namespace LearnAlgorithm.Controls
                     {
                         int X = Margin + i * PicWidth / 10;
                         int Y1 = Margin + PicHeight + 10;
-                        FormattedText text = new FormattedText($"{i * 10}ms", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
+                        FormattedText text = new FormattedText($"{i * 10}ms", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                         ctx.DrawText(text, new Point(X - 20, Y1));
                     }
 

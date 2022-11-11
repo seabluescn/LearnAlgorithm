@@ -98,7 +98,7 @@ namespace LearnAlgorithm.Controls
             {
                 int X = Margin + XCenter + i * 100;
                 int Y = Margin + PicHeight + 10;
-                FormattedText text = new FormattedText($"{(double)i / 10:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White);
+                FormattedText text = new FormattedText($"{(double)i / 10:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                 ctx.DrawText(text, new Point(X - 30, Y));
             }
 
@@ -109,11 +109,11 @@ namespace LearnAlgorithm.Controls
                 if (yMax < 0.01) yMax = 0.01;
 
                 //绘制Y坐标
-                FormattedText text = new FormattedText($"{0:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White);
+                FormattedText text = new FormattedText($"{0:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                 ctx.DrawText(text, new Point(10, Margin + YCenter - 15));
-                text = new FormattedText($"{yMax:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White);
+                text = new FormattedText($"{yMax:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                 ctx.DrawText(text, new Point(10, Margin - 15));
-                text = new FormattedText($"{-yMax:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White);
+                text = new FormattedText($"{-yMax:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                 ctx.DrawText(text, new Point(10, Margin + PicHeight - 15));
 
                 //绘点
@@ -174,21 +174,21 @@ namespace LearnAlgorithm.Controls
 
                 if (data.ScatterplotType == ScatterplotType.LinearCombination)
                 {
-                    double[] YPoints = new double[201];
+                    double[] YPoints = new double[241];
 
-                    for (int i = 0; i <= 200; i++)
+                    for (int i = 0; i <= 240; i++)
                     {
-                        double x = (double)(i - 100) / 100;
+                        double x = (double)(i - 120) / 100;
                         double y = data.LinearCombinationFunc(x);
                         YPoints[i] = y;
                     }
 
-                    for (int i = 0; i < 200; i++)
+                    for (int i = 0; i < 240; i++)
                     {
-                        double X1 = Margin + 200 + 10 * i;
+                        double X1 = Margin  + 10 * i;
                         double Y1 = Margin + YCenter - 1000 * YPoints[i] / yMax;
 
-                        double X2 = Margin + 200 + 10 * (i + 1);
+                        double X2 = Margin  + 10 * (i + 1);
                         double Y2 = Margin + YCenter - 1000 * YPoints[i + 1] / yMax;
 
                         ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
