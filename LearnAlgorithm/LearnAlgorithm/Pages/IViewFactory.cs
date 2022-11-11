@@ -10,5 +10,7 @@ namespace LearnAlgorithm.Pages
     {
         FourierTransformPageViewModel FourierTransformPageViewModel();
         LinearRegressionPageViewModel LinearRegressionPageViewModel();
+        PolynomialRegresionPageViewModel PolynomialRegresionPageViewModel();
+        LinearCombinationPageViewModel LinearCombinationPageViewModel();
     }
 }

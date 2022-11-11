@@ -14,11 +14,16 @@ namespace LearnAlgorithm.Controls
         public double[] SampleY { get; set; }
 
         public (double p0, double p1) LinearRegressionResult { get; set; }
+        public double[] PolynomialRegresioResult { get; set; }
+        public Func<double, double> LinearCombinationFunc { get; set; }
     }
 
 
     public enum ScatterplotType
     {
-        LineRegression = 0,
+        None = 0,
+        LineRegression = 1,
+        PolynomialRegresion = 2,
+        LinearCombination = 3,
     }
 }

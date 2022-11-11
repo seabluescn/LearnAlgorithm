@@ -42,6 +42,8 @@ namespace LearnAlgorithm.Pages
             {
                 new MenuItem(){Title="Fourier Transform"},
                 new MenuItem(){Title="Linear Regression"},
+                new MenuItem(){Title="Polynomial Regresion"},
+                new MenuItem(){Title="Linear Combination"},
             };
 
             this.Bind(s => SelectedIndex, (o, e) => SelectedIndexChanged());
@@ -54,12 +56,15 @@ namespace LearnAlgorithm.Pages
             {
                 case 0: ActivateItem(FourierTransformPageView ??= _viewFactory.FourierTransformPageViewModel()); break;
                 case 1: ActivateItem(LinearRegressionPageView ??= _viewFactory.LinearRegressionPageViewModel()); break;
+                case 2: ActivateItem(PolynomialRegresionPageView ??= _viewFactory.PolynomialRegresionPageViewModel()); break;
+                case 3: ActivateItem(LinearCombinationPageView ??= _viewFactory.LinearCombinationPageViewModel()); break;
             }
         }
 
         private FourierTransformPageViewModel FourierTransformPageView;
         private LinearRegressionPageViewModel LinearRegressionPageView;
-
+        private PolynomialRegresionPageViewModel PolynomialRegresionPageView;
+        private LinearCombinationPageViewModel LinearCombinationPageView;
 
         #endregion
     }

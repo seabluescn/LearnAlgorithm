@@ -105,7 +105,7 @@ namespace LearnAlgorithm.Controls
 
             if (data != null)
             {
-                double yMax = data.SampleY.MaximumAbsolute();
+                double yMax = data.SampleY.MaximumAbsolute() * 1.2;
                 if (yMax < 0.01) yMax = 0.01;
 
                 //绘制Y坐标
@@ -127,6 +127,7 @@ namespace LearnAlgorithm.Controls
                 }
 
                 //绘制结果
+                //LineRegression
                 if (data.ScatterplotType == ScatterplotType.LineRegression)
                 {
                     double x1 = -1;
@@ -141,9 +142,59 @@ namespace LearnAlgorithm.Controls
 
                     ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
                 }
+
+                //PolynomialRegresion
+                if (data.ScatterplotType == ScatterplotType.PolynomialRegresion)
+                {
+                    double[] YPoints = new double[201];
+
+                    for (int i = 0; i <= 200; i++)
+                    {
+                        double x = (double)(i - 100) / 100;
+                        double y = data.PolynomialRegresioResult[0]
+                                 + data.PolynomialRegresioResult[1] * x
+                                 + data.PolynomialRegresioResult[2] * Math.Pow(x, 2)
+                                 + data.PolynomialRegresioResult[3] * Math.Pow(x, 3)
+                                 + data.PolynomialRegresioResult[4] * Math.Pow(x, 4)
+                                 + data.PolynomialRegresioResult[5] * Math.Pow(x, 5);
+                        YPoints[i] = y;
+                    }
+
+                    for (int i = 0; i < 200; i++)
+                    {
+                        double X1 = Margin + 200 + 10 * i;
+                        double Y1 = Margin + YCenter - 1000 * YPoints[i] / yMax;
+
+                        double X2 = Margin + 200 + 10 * (i + 1);
+                        double Y2 = Margin + YCenter - 1000 * YPoints[i + 1] / yMax;
+
+                        ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
+                    }
+                }
+
+                if (data.ScatterplotType == ScatterplotType.LinearCombination)
+                {
+                    double[] YPoints = new double[201];
+
+                    for (int i = 0; i <= 200; i++)
+                    {
+                        double x = (double)(i - 100) / 100;
+                        double y = data.LinearCombinationFunc(x);
+                        YPoints[i] = y;
+                    }
+
+                    for (int i = 0; i < 200; i++)
+                    {
+                        double X1 = Margin + 200 + 10 * i;
+                        double Y1 = Margin + YCenter - 1000 * YPoints[i] / yMax;
+
+                        double X2 = Margin + 200 + 10 * (i + 1);
+                        double Y2 = Margin + YCenter - 1000 * YPoints[i + 1] / yMax;
+
+                        ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
+                    }
+                }
             }
-
-
         }
 
         #endregion
