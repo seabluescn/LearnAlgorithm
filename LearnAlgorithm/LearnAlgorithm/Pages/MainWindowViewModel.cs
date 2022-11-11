@@ -44,6 +44,7 @@ namespace LearnAlgorithm.Pages
                 new MenuItem(){Title="Linear Regression"},
                 new MenuItem(){Title="Polynomial Regresion"},
                 new MenuItem(){Title="Linear Combination"},
+                new MenuItem(){Title="Curve"},
             };
 
             this.Bind(s => SelectedIndex, (o, e) => SelectedIndexChanged());
@@ -58,6 +59,7 @@ namespace LearnAlgorithm.Pages
                 case 1: ActivateItem(LinearRegressionPageView ??= _viewFactory.LinearRegressionPageViewModel()); break;
                 case 2: ActivateItem(PolynomialRegresionPageView ??= _viewFactory.PolynomialRegresionPageViewModel()); break;
                 case 3: ActivateItem(LinearCombinationPageView ??= _viewFactory.LinearCombinationPageViewModel()); break;
+                case 4: ActivateItem(CurvePageView ??= _viewFactory.CurvePageViewModel()); break;
             }
         }
 
@@ -65,6 +67,7 @@ namespace LearnAlgorithm.Pages
         private LinearRegressionPageViewModel LinearRegressionPageView;
         private PolynomialRegresionPageViewModel PolynomialRegresionPageView;
         private LinearCombinationPageViewModel LinearCombinationPageView;
+        private CurvePageViewModel CurvePageView;
 
         #endregion
     }

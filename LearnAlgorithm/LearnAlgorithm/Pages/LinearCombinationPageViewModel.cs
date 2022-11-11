@@ -84,7 +84,7 @@ namespace LearnAlgorithm.Pages
                 ScatterplotType = ScatterplotType.LinearCombination,
                 SampleX = SampleX,
                 SampleY = SampleY,
-                LinearCombinationFunc = resultFunc,
+                ResultFunc = resultFunc,
             };
         }
     }

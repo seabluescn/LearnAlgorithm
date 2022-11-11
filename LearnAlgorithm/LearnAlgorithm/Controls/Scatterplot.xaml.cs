@@ -179,7 +179,7 @@ namespace LearnAlgorithm.Controls
                     for (int i = 0; i <= 240; i++)
                     {
                         double x = (double)(i - 120) / 100;
-                        double y = data.LinearCombinationFunc(x);
+                        double y = data.ResultFunc(x);
                         YPoints[i] = y;
                     }
 

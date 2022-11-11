@@ -15,7 +15,7 @@ namespace LearnAlgorithm.Controls
 
         public (double p0, double p1) LinearRegressionResult { get; set; }
         public double[] PolynomialRegresioResult { get; set; }
-        public Func<double, double> LinearCombinationFunc { get; set; }
+        public Func<double, double> ResultFunc { get; set; }
     }
 
 
@@ -25,5 +25,6 @@ namespace LearnAlgorithm.Controls
         LineRegression = 1,
         PolynomialRegresion = 2,
         LinearCombination = 3,
+        Curve=4,
     }
 }

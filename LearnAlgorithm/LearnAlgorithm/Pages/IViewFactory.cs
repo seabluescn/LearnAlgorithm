@@ -12,5 +12,6 @@ namespace LearnAlgorithm.Pages
         LinearRegressionPageViewModel LinearRegressionPageViewModel();
         PolynomialRegresionPageViewModel PolynomialRegresionPageViewModel();
         LinearCombinationPageViewModel LinearCombinationPageViewModel();
+        CurvePageViewModel CurvePageViewModel();
     }
 }
