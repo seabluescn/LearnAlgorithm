@@ -9,5 +9,6 @@ namespace LearnAlgorithm.Pages
     public interface IViewFactory
     {
         FourierTransformPageViewModel FourierTransformPageViewModel();
+        LinearRegressionPageViewModel LinearRegressionPageViewModel();
     }
 }

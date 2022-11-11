@@ -12,17 +12,17 @@ namespace LearnAlgorithm.Pages
     {
 
         private readonly IWindowManager _windowManager;
-        private readonly IViewFactory _viewFactory;      
+        private readonly IViewFactory _viewFactory;
 
         public MainWindowViewModel(IWindowManager windowManager, IViewFactory viewFactory)
         {
             _windowManager = windowManager;
-            _viewFactory = viewFactory;           
+            _viewFactory = viewFactory;
         }
 
         protected override void OnInitialActivate()
         {
-            base.OnInitialActivate();           
+            base.OnInitialActivate();
             InitMenuItemList();
         }
 
@@ -40,7 +40,8 @@ namespace LearnAlgorithm.Pages
         {
             MenuItemList = new List<MenuItem>()
             {
-                new MenuItem(){Title="FourierTransform"},               
+                new MenuItem(){Title="Fourier Transform"},
+                new MenuItem(){Title="Linear Regression"},
             };
 
             this.Bind(s => SelectedIndex, (o, e) => SelectedIndexChanged());
@@ -51,12 +52,14 @@ namespace LearnAlgorithm.Pages
         {
             switch (SelectedIndex)
             {
-                case 0: ActivateItem(FourierTransformPageView ??= _viewFactory.FourierTransformPageViewModel()); break;              
+                case 0: ActivateItem(FourierTransformPageView ??= _viewFactory.FourierTransformPageViewModel()); break;
+                case 1: ActivateItem(LinearRegressionPageView ??= _viewFactory.LinearRegressionPageViewModel()); break;
             }
         }
 
         private FourierTransformPageViewModel FourierTransformPageView;
-       
+        private LinearRegressionPageViewModel LinearRegressionPageView;
+
 
         #endregion
     }
