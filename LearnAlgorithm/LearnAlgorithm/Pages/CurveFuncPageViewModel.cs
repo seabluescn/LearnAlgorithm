@@ -16,10 +16,10 @@ namespace LearnAlgorithm.Pages
         private double s = 0;
 
         public double p0 { get; set; } = 100;
-        public double p1 { get; set; } = 10;
+        public double p1 { get; set; } = 1;
         public double p2 { get; set; } = 50;
 
-        public double noise { get; set; } = 0;
+        public double noise { get; set; } = 5;
 
 
         public double Result_P0 { get; set; }
@@ -56,7 +56,7 @@ namespace LearnAlgorithm.Pages
             for (int i = 0; i < Count; i++)
             {
                 double x = i;
-                double y = MyFunction2(s, p0, p1, p2, x);
+                double y = MyFunction(p0, p1, p2, x, s);
                 y += y * (noise / 100) * (random.NextDouble() * 2 - 1);
 
                 SampleX[i] = x;
@@ -68,9 +68,9 @@ namespace LearnAlgorithm.Pages
                 var result = Fit.Curve(
                      SampleX,
                      SampleY,
-                     (a, b, c, x) => MyFunction2(s, a, b, c, x),
+                     (A, t1, t2, x) => MyFunction(A, t1, t2, x, s),
                      initialGuess0: 100,
-                     initialGuess1: 10,
+                     initialGuess1: 1,
                      initialGuess2: 50,
                      maxIterations: 1000000);
 
@@ -80,9 +80,9 @@ namespace LearnAlgorithm.Pages
 
                 var result_func = Fit.CurveFunc(SampleX,
                      SampleY,
-                     (a, b, c, x) => MyFunction2(s, a, b, c, x),
+                     (a, b, c, x) => MyFunction(a, b, c, x, s),
                      initialGuess0: 100,
-                     initialGuess1: 10,
+                     initialGuess1: 1,
                      initialGuess2: 50,
                      maxIterations: 1000000);
 
@@ -103,10 +103,9 @@ namespace LearnAlgorithm.Pages
         }
 
         //y=A*[e^(-x/t1)-e^(-x/t2)]
-        private static double MyFunction2(double start, double A, double t1, double t2, double x)
+        private static double MyFunction(double A, double t1, double t2, double x, double s)
         {
-            double y;
-            y = A * (Math.Exp(-x / t1) - Math.Exp(-x / t2));
+            double y = A * (Math.Exp(-x / t1) - Math.Exp(-x / t2));
             return y;
         }
     }
