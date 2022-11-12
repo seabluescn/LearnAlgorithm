@@ -65,7 +65,6 @@ namespace LearnAlgorithm.Pages
 
             try
             {
-
                 var result = Fit.Curve(
                      SampleX,
                      SampleY,
