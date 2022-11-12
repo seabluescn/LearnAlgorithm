@@ -20,7 +20,7 @@ namespace LearnAlgorithm.Pages
         public double p3 { get; set; } = -4;
         public double p4 { get; set; } = 5;
         public double p5 { get; set; } = -6;
-        public double noise { get; set; } = 0;
+        public double noise { get; set; } = 10;
 
         public double Result_P0 { get; set; }
         public string Result_P0_Str => $"p0={Result_P0:0.000000}";
@@ -60,7 +60,7 @@ namespace LearnAlgorithm.Pages
 
         private void Invalidate()
         {
-            int Count = 100;
+            int Count = 200;
 
             double[] SampleX = new double[Count];
             double[] SampleY = new double[Count];

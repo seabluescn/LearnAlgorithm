@@ -17,14 +17,25 @@ namespace LearnAlgorithm.Controls
         public double[] PolynomialRegresioResult { get; set; }
         public Func<double, double> ResultFunc { get; set; }
     }
-
+   
 
     public enum ScatterplotType
     {
         None = 0,
+
+        /// <summary>
+        /// 直线
+        /// </summary>
         LineRegression = 1,
+
+        /// <summary>
+        /// 多项式
+        /// </summary>
         PolynomialRegresion = 2,
-        LinearCombination = 3,
-        Curve=4,
+
+        /// <summary>
+        /// 函数y=F(x)
+        /// </summary>
+        Function = 3,
     }
 }

@@ -18,11 +18,11 @@ using System.Windows.Shapes;
 namespace LearnAlgorithm.Controls
 {
     /// <summary>
-    /// Scatterplot.xaml 的交互逻辑
+    /// ScatterplotNormal.xaml 的交互逻辑
     /// </summary>
-    public partial class Scatterplot : UserControl
+    public partial class ScatterplotNormal : UserControl
     {
-        public Scatterplot()
+        public ScatterplotNormal()
         {
             InitializeComponent();
         }
@@ -39,11 +39,11 @@ namespace LearnAlgorithm.Controls
         }
 
         public static readonly DependencyProperty ScatterplotDataProperty =
-            DependencyProperty.Register("ScatterplotData", typeof(ScatterplotData), typeof(Scatterplot), new UIPropertyMetadata(null, ScatterplotDataChanged));
+            DependencyProperty.Register("ScatterplotData", typeof(ScatterplotData), typeof(ScatterplotNormal), new UIPropertyMetadata(null, ScatterplotDataChanged));
 
         private static void ScatterplotDataChanged(DependencyObject obj, DependencyPropertyChangedEventArgs arg)
         {
-            Scatterplot? view = obj as Scatterplot;
+            ScatterplotNormal? view = obj as ScatterplotNormal;
             ScatterplotData? data = arg.NewValue as ScatterplotData;
             view?.DrawImage(data);
         }
@@ -62,9 +62,9 @@ namespace LearnAlgorithm.Controls
 
         private void DrawByContext(DrawingContext ctx, ScatterplotData? data)
         {
-            int PicWidth = 2400;
+            int PicWidth = 2000;
             int PicHeight = 2000;
-            int XCenter = 1200;
+            int XCenter = 1000;
             int YCenter = 1000;
             int Margin = 100;
 
@@ -73,7 +73,7 @@ namespace LearnAlgorithm.Controls
             ctx.DrawRectangle(Brushes.Black, new Pen(Brushes.White, 2), new Rect(Margin, Margin, PicWidth, PicHeight));
 
             //绘制X轴线
-            for (int i = 1; i < 24; i++)
+            for (int i = 1; i < 20; i++)
             {
                 int X = Margin + i * 100;
                 int Y0 = Margin;
@@ -91,14 +91,14 @@ namespace LearnAlgorithm.Controls
             }
 
             ctx.DrawLine(new Pen(Brushes.White, 2), new Point(Margin, Margin + YCenter), new Point(Margin + PicWidth, Margin + YCenter));
-            ctx.DrawLine(new Pen(Brushes.White, 2), new Point(Margin + XCenter, Margin), new Point(Margin + XCenter, Margin + PicHeight));
+
 
             //绘制X坐标
-            for (int i = -12; i <= 12; i++)
+            for (int i = 0; i <= 20; i++)
             {
-                int X = Margin + XCenter + i * 100;
+                int X = Margin + i * 100;
                 int Y = Margin + PicHeight + 10;
-                FormattedText text = new FormattedText($"{(double)i / 10:0.0}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
+                FormattedText text = new FormattedText($"{i * 10}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 30, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                 ctx.DrawText(text, new Point(X - 30, Y));
             }
 
@@ -120,75 +120,33 @@ namespace LearnAlgorithm.Controls
                 int Count = data.SampleX.Length;
                 for (int i = 0; i < Count; i++)
                 {
-                    double X = Margin + XCenter + 1000 * data.SampleX[i];
+                    double X = Margin + 10 * data.SampleX[i];
                     double Y = Margin + YCenter - 1000 * data.SampleY[i] / yMax;
 
                     ctx.DrawEllipse(Brushes.White, new Pen(Brushes.White, 1), new Point(X, Y), 3, 3);
                 }
 
-                //绘制结果
-                //LineRegression
-                if (data.ScatterplotType == ScatterplotType.LineRegression)
+                //绘制结果               
+                if (data.ScatterplotType == ScatterplotType.Function)
                 {
-                    double x1 = -1;
-                    double y1 = data.LinearRegressionResult.p0 + data.LinearRegressionResult.p1 * x1;
-                    double X1 = Margin + XCenter + 1000 * x1;
-                    double Y1 = Margin + YCenter - 1000 * y1 / yMax;
-
-                    double x2 = 1;
-                    double y2 = data.LinearRegressionResult.p0 + data.LinearRegressionResult.p1 * x2;
-                    double X2 = Margin + XCenter + 1000 * x2;
-                    double Y2 = Margin + YCenter - 1000 * y2 / yMax;
-
-                    ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
-                }
-
-                //PolynomialRegresion
-                if (data.ScatterplotType == ScatterplotType.PolynomialRegresion)
-                {
+                    double[] XPoints = new double[201];
                     double[] YPoints = new double[201];
 
                     for (int i = 0; i <= 200; i++)
                     {
-                        double x = (double)(i - 100) / 100;
-                        double y = data.PolynomialRegresioResult[0]
-                                 + data.PolynomialRegresioResult[1] * x
-                                 + data.PolynomialRegresioResult[2] * Math.Pow(x, 2)
-                                 + data.PolynomialRegresioResult[3] * Math.Pow(x, 3)
-                                 + data.PolynomialRegresioResult[4] * Math.Pow(x, 4)
-                                 + data.PolynomialRegresioResult[5] * Math.Pow(x, 5);
+                        double x = i * 10;
+                        double y = data.ResultFunc(i);
+
+                        XPoints[i] = x;
                         YPoints[i] = y;
                     }
 
                     for (int i = 0; i < 200; i++)
                     {
-                        double X1 = Margin + 200 + 10 * i;
+                        double X1 = Margin + XPoints[i];
                         double Y1 = Margin + YCenter - 1000 * YPoints[i] / yMax;
 
-                        double X2 = Margin + 200 + 10 * (i + 1);
-                        double Y2 = Margin + YCenter - 1000 * YPoints[i + 1] / yMax;
-
-                        ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));
-                    }
-                }
-
-                if (data.ScatterplotType == ScatterplotType.Function)
-                {
-                    double[] YPoints = new double[241];
-
-                    for (int i = 0; i <= 240; i++)
-                    {
-                        double x = (double)(i - 120) / 100;
-                        double y = data.ResultFunc(x);
-                        YPoints[i] = y;
-                    }
-
-                    for (int i = 0; i < 240; i++)
-                    {
-                        double X1 = Margin + 10 * i;
-                        double Y1 = Margin + YCenter - 1000 * YPoints[i] / yMax;
-
-                        double X2 = Margin + 10 * (i + 1);
+                        double X2 = Margin + XPoints[i + 1];
                         double Y2 = Margin + YCenter - 1000 * YPoints[i + 1] / yMax;
 
                         ctx.DrawLine(new Pen(Brushes.Red, 3), new Point(X1, Y1), new Point(X2, Y2));

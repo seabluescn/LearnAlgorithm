@@ -28,27 +28,26 @@
             </Grid>
 
             <Canvas Grid.Column="1" >
-                <TextBlock Text="y=a*Sin(bx+c)" Canvas.Left="77" Canvas.Top="15" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="y=a*Sin(bx+c)" Canvas.Left="77" Canvas.Top="30" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Text="a:" Canvas.Left="58" Canvas.Top="72" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <mah:NumericUpDown Value="{Binding p0}" StringFormat="0.0000" Canvas.Left="93" Canvas.Top="67"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Text="b:" Canvas.Left="58" Canvas.Top="102" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <mah:NumericUpDown Value="{Binding p1}" StringFormat="0.0000" Canvas.Left="93" Canvas.Top="97"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Text="c:" Canvas.Left="58" Canvas.Top="132" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <mah:NumericUpDown Value="{Binding p2}" StringFormat="0.0000" Canvas.Left="93" Canvas.Top="127"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
 
-                <TextBlock Text="a:" Canvas.Left="58" Canvas.Top="135" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <mah:NumericUpDown Value="{Binding p1}" StringFormat="0.00" Canvas.Left="93" Canvas.Top="130"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="noise:" Canvas.Left="50" Canvas.Top="190" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <mah:NumericUpDown Value="{Binding noise}" Minimum="0" Maximum="100" StringFormat="0.00" Canvas.Left="93" Canvas.Top="185"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="%" Canvas.Left="194" Canvas.Top="190" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                <TextBlock Text="b:" Canvas.Left="58" Canvas.Top="165" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <mah:NumericUpDown Value="{Binding p2}" StringFormat="0.00" Canvas.Left="93" Canvas.Top="160"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-                <TextBlock Text="c:" Canvas.Left="58" Canvas.Top="195" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <mah:NumericUpDown Value="{Binding p3}" StringFormat="0.00" Canvas.Left="93" Canvas.Top="190"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-
-                <TextBlock Text="noise:" Canvas.Left="50" Canvas.Top="291" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <mah:NumericUpDown Value="{Binding noise}" Minimum="0" Maximum="100" StringFormat="0.00" Canvas.Left="93" Canvas.Top="286"  Width="96" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBlock Text="%" Canvas.Left="194" Canvas.Top="291" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-                <TextBlock Text="Result" Canvas.Left="107" Canvas.Top="350" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBlock Text="{Binding Result_P1_Str}" Canvas.Left="50" Canvas.Top="420" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBlock Text="{Binding Result_P2_Str}" Canvas.Left="50" Canvas.Top="440" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                <TextBlock Text="{Binding Result_P3_Str}" Canvas.Left="50" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="Result" Canvas.Left="107" Canvas.Top="279" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Result_P0_Str}" Canvas.Left="50" Canvas.Top="320" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Result_P1_Str}" Canvas.Left="50" Canvas.Top="340" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Result_P2_Str}" Canvas.Left="50" Canvas.Top="360" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             </Canvas>
         </Grid>

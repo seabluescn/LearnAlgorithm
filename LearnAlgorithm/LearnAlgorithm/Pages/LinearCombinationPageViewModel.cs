@@ -81,7 +81,7 @@ namespace LearnAlgorithm.Pages
 
             ScatterplotData = new ScatterplotData()
             {
-                ScatterplotType = ScatterplotType.LinearCombination,
+                ScatterplotType = ScatterplotType.Function,
                 SampleX = SampleX,
                 SampleY = SampleY,
                 ResultFunc = resultFunc,
