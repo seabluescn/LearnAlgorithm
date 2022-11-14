@@ -12,7 +12,7 @@ namespace LearnAlgorithm.Pages
 {
     public class CurveFuncPageViewModel : Screen
     {
-        private readonly Random random = new Random();      
+        private readonly Random random = new Random();
 
         public double p0 { get; set; } = 100;
         public double p1 { get; set; } = 1;
@@ -62,12 +62,34 @@ namespace LearnAlgorithm.Pages
                 SampleY[i] = y;
             }
 
+            //Add pluse noise
+            double Max = SampleY.Max();
+            double Min = SampleX.Min();
+            bool bPositive = Math.Abs(Max) > Math.Abs(Min);
+            int MaxLoc = 0; 
+            for (int i = 0; i < Count; i++)
+            {
+                if (bPositive)
+                {
+                    if (SampleY[i] > SampleY[MaxLoc]) MaxLoc = i;
+                }
+                else
+                {
+                    if (SampleY[i] < SampleY[MaxLoc]) MaxLoc = i;
+                }
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                SampleY[MaxLoc + i] *= 1.3;
+            }
+
+            //solution
             try
             {
                 var result = Fit.Curve(
                      SampleX,
                      SampleY,
-                     (A, t1, t2, x) => MyFunction(A, t1, t2, x),
+                     MyFunction,
                      initialGuess0: 100,
                      initialGuess1: 1,
                      initialGuess2: 50,
@@ -80,7 +102,7 @@ namespace LearnAlgorithm.Pages
 
                 var result_func = Fit.CurveFunc(SampleX,
                      SampleY,
-                     (A, t1, t2, x) => MyFunction(A, t1, t2, x),
+                     MyFunction,
                      initialGuess0: 100,
                      initialGuess1: 1,
                      initialGuess2: 50,

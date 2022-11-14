@@ -26,7 +26,7 @@ namespace LearnAlgorithm.Pages
             InitMenuItemList();
         }
 
-        #region 菜单
+        #region Menu
 
         public class MenuItem
         {
@@ -44,8 +44,8 @@ namespace LearnAlgorithm.Pages
                 new MenuItem(){Title="Linear Regression"},
                 new MenuItem(){Title="Polynomial Regresion"},
                 new MenuItem(){Title="Linear Combination"},
-                new MenuItem(){Title="Curve"},
-                new MenuItem(){Title="Curve Function"},
+                new MenuItem(){Title="Curve 1"},
+                new MenuItem(){Title="Curve 2"},
             };
 
             this.Bind(s => SelectedIndex, (o, e) => SelectedIndexChanged());

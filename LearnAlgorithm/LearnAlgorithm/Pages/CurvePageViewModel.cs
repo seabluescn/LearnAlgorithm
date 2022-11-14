@@ -12,14 +12,13 @@ namespace LearnAlgorithm.Pages
 {
     public class CurvePageViewModel : Screen
     {
-        private readonly Random random = new Random();       
+        private readonly Random random = new Random();
 
         public double p0 { get; set; } = 1;
         public double p1 { get; set; } = 2;
         public double p2 { get; set; } = 3;
 
         public double noise { get; set; } = 10;
-
 
         public double Result_P0 { get; set; }
         public string Result_P0_Str => $"a={Result_P0:0.000000}";
@@ -55,7 +54,7 @@ namespace LearnAlgorithm.Pages
             for (int i = 0; i < Count; i++)
             {
                 double x = random.NextDouble() * 2 - 1;
-                double y = MyFunction1(p0, p1, p2, x);
+                double y = p0 * Math.Sin(p1 * x + p2);
                 y += y * (noise / 100) * (random.NextDouble() * 2 - 1);
 
                 SampleX[i] = x;
@@ -65,7 +64,7 @@ namespace LearnAlgorithm.Pages
             var result = Fit.Curve(
                  SampleX,
                  SampleY,
-                 (a, b, c, x) => MyFunction1(a, b, c, x),
+                 (a, b, c, x) => a * Math.Sin(b * x + c),
                  initialGuess0: 1,
                  initialGuess1: 1,
                  initialGuess2: 1,
@@ -75,10 +74,9 @@ namespace LearnAlgorithm.Pages
             Result_P1 = result.P1;
             Result_P2 = result.P2;
 
-
             var result_func = Fit.CurveFunc(SampleX,
                  SampleY,
-                 (a, b, c, x) => MyFunction1(a, b, c, x),
+                 (a, b, c, x) => a * Math.Sin(b * x + c),
                  initialGuess0: 1,
                  initialGuess1: 1,
                  initialGuess2: 1,
@@ -91,17 +89,6 @@ namespace LearnAlgorithm.Pages
                 SampleY = SampleY,
                 ResultFunc = result_func,
             };
-        }
-
-        //y=0+a*Sin(b*x+c)
-        private static double MyFunction1(double a, double b, double c, double x)
-        {
-            double y;
-            y = a * Math.Sin(b * x + c);
-
-            return y;
-        }
-
-
+        } 
     }
 }
