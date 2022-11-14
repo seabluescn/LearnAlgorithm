@@ -12,8 +12,7 @@ namespace LearnAlgorithm.Pages
 {
     public class CurvePageViewModel : Screen
     {
-        private readonly Random random = new Random();
-        private double s = 0;
+        private readonly Random random = new Random();       
 
         public double p0 { get; set; } = 1;
         public double p1 { get; set; } = 2;
@@ -56,7 +55,7 @@ namespace LearnAlgorithm.Pages
             for (int i = 0; i < Count; i++)
             {
                 double x = random.NextDouble() * 2 - 1;
-                double y = MyFunction1(s, p0, p1, p2, x);
+                double y = MyFunction1(p0, p1, p2, x);
                 y += y * (noise / 100) * (random.NextDouble() * 2 - 1);
 
                 SampleX[i] = x;
@@ -66,7 +65,7 @@ namespace LearnAlgorithm.Pages
             var result = Fit.Curve(
                  SampleX,
                  SampleY,
-                 (a, b, c, x) => MyFunction1(s, a, b, c, x),
+                 (a, b, c, x) => MyFunction1(a, b, c, x),
                  initialGuess0: 1,
                  initialGuess1: 1,
                  initialGuess2: 1,
@@ -79,7 +78,7 @@ namespace LearnAlgorithm.Pages
 
             var result_func = Fit.CurveFunc(SampleX,
                  SampleY,
-                 (a, b, c, x) => MyFunction1(s, a, b, c, x),
+                 (a, b, c, x) => MyFunction1(a, b, c, x),
                  initialGuess0: 1,
                  initialGuess1: 1,
                  initialGuess2: 1,
@@ -95,7 +94,7 @@ namespace LearnAlgorithm.Pages
         }
 
         //y=0+a*Sin(b*x+c)
-        private static double MyFunction1(double s, double a, double b, double c, double x)
+        private static double MyFunction1(double a, double b, double c, double x)
         {
             double y;
             y = a * Math.Sin(b * x + c);

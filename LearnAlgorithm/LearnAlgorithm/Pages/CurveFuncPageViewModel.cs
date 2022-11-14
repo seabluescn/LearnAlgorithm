@@ -12,8 +12,7 @@ namespace LearnAlgorithm.Pages
 {
     public class CurveFuncPageViewModel : Screen
     {
-        private readonly Random random = new Random();
-        private double s = 0;
+        private readonly Random random = new Random();      
 
         public double p0 { get; set; } = 100;
         public double p1 { get; set; } = 1;
@@ -56,7 +55,7 @@ namespace LearnAlgorithm.Pages
             for (int i = 0; i < Count; i++)
             {
                 double x = i;
-                double y = MyFunction(p0, p1, p2, x, s);
+                double y = MyFunction(p0, p1, p2, x);
                 y += y * (noise / 100) * (random.NextDouble() * 2 - 1);
 
                 SampleX[i] = x;
@@ -68,7 +67,7 @@ namespace LearnAlgorithm.Pages
                 var result = Fit.Curve(
                      SampleX,
                      SampleY,
-                     (A, t1, t2, x) => MyFunction(A, t1, t2, x, s),
+                     (A, t1, t2, x) => MyFunction(A, t1, t2, x),
                      initialGuess0: 100,
                      initialGuess1: 1,
                      initialGuess2: 50,
@@ -78,9 +77,10 @@ namespace LearnAlgorithm.Pages
                 Result_P1 = result.P1;
                 Result_P2 = result.P2;
 
+
                 var result_func = Fit.CurveFunc(SampleX,
                      SampleY,
-                     (a, b, c, x) => MyFunction(a, b, c, x, s),
+                     (A, t1, t2, x) => MyFunction(A, t1, t2, x),
                      initialGuess0: 100,
                      initialGuess1: 1,
                      initialGuess2: 50,
@@ -103,7 +103,7 @@ namespace LearnAlgorithm.Pages
         }
 
         //y=A*[e^(-x/t1)-e^(-x/t2)]
-        private static double MyFunction(double A, double t1, double t2, double x, double s)
+        private static double MyFunction(double A, double t1, double t2, double x)
         {
             double y = A * (Math.Exp(-x / t1) - Math.Exp(-x / t2));
             return y;
