@@ -92,5 +92,38 @@ namespace LearnAlgorithm.Pages
                 WaveData = NewData,
             };
         }
+
+        public string TimeStr { get; set; }
+        public void PerformanceTest()
+        {
+            int Length = 8000;
+            double S1 = Sample / F1;
+            double S2 = Sample / F2;
+            double S3 = Sample / F3;
+
+            double[] OriginalData = new double[Length];
+            for (int i = 0; i < Length; i++)
+            {
+                OriginalData[i]
+                    = Vdc
+                    + Vp1 * Math.Sin(2 * Math.PI * i / S1)
+                    + Vp2 * Math.Sin(2 * Math.PI * i / S2)
+                    + Vp3 * Math.Sin(2 * Math.PI * i / S3);
+            }
+
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            double[] Freq = FourierTransform.Forward(OriginalData);
+            stopwatch.Stop();
+            long ffttime = stopwatch.ElapsedMilliseconds;
+
+            stopwatch.Start();
+            double[] NewData = FourierTransform.BandpassFilter(OriginalData, Low, High, (int)(1.0 / t));
+            stopwatch.Stop();
+            long filtertime = stopwatch.ElapsedMilliseconds;
+
+            TimeStr = $"FFT:{ffttime}ms,Filter:{filtertime}ms";
+        }
     }
 }
