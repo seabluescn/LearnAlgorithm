@@ -96,7 +96,7 @@ namespace LearnAlgorithm.Pages
         public string TimeStr { get; set; }
         public void PerformanceTest()
         {
-            int Length = 8000;
+            int Length = 65536;
             double S1 = Sample / F1;
             double S2 = Sample / F2;
             double S3 = Sample / F3;
