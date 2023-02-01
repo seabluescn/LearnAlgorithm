@@ -78,18 +78,21 @@ namespace LearnAlgorithm.Pages
             {
                 GraphicsType = GraphicsType.Wave,
                 WaveData = OriginalData,
+                sampletime = t,
             };
 
             FreqencyData = new WaveGraphicsData
             {
                 GraphicsType = GraphicsType.Frequency,
                 WaveData = Freq,
+                sampletime = t,
             };
 
             NewWaveData = new WaveGraphicsData
             {
                 GraphicsType = GraphicsType.Wave,
                 WaveData = NewData,
+                sampletime = t,
             };
         }
 

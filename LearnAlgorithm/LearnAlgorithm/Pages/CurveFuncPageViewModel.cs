@@ -78,10 +78,11 @@ namespace LearnAlgorithm.Pages
                     if (SampleY[i] < SampleY[MaxLoc]) MaxLoc = i;
                 }
             }
-            for (int i = 0; i < 5; i++)
-            {
-                SampleY[MaxLoc + i] *= 1.3;
-            }
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    SampleY[MaxLoc + i] *= 1.3;
+            //}
 
             //solution
             try

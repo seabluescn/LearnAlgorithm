@@ -11,6 +11,8 @@ namespace LearnAlgorithm.Controls
         public GraphicsType GraphicsType { get; set; }
 
         public double[]? WaveData { get; set; } = null;
+
+        public double sampletime { get; set; } = 1;
     }
 
     public enum GraphicsType

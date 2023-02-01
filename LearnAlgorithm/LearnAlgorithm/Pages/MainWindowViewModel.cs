@@ -41,6 +41,7 @@ namespace LearnAlgorithm.Pages
             MenuItemList = new List<MenuItem>()
             {
                 new MenuItem(){Title="Fourier Transform"},
+                new MenuItem(){Title="Fourier Phase"},
                 new MenuItem(){Title="Linear Regression"},
                 new MenuItem(){Title="Polynomial Regresion"},
                 new MenuItem(){Title="Linear Combination"},
@@ -57,15 +58,17 @@ namespace LearnAlgorithm.Pages
             switch (SelectedIndex)
             {
                 case 0: ActivateItem(FourierTransformPageView ??= _viewFactory.FourierTransformPageViewModel()); break;
-                case 1: ActivateItem(LinearRegressionPageView ??= _viewFactory.LinearRegressionPageViewModel()); break;
-                case 2: ActivateItem(PolynomialRegresionPageView ??= _viewFactory.PolynomialRegresionPageViewModel()); break;
-                case 3: ActivateItem(LinearCombinationPageView ??= _viewFactory.LinearCombinationPageViewModel()); break;
-                case 4: ActivateItem(CurvePageView ??= _viewFactory.CurvePageViewModel()); break;
-                case 5: ActivateItem(CurveFuncPageView ??= _viewFactory.CurveFuncPageViewModel()); break;
+                case 1: ActivateItem(FourierPhaseView ??= _viewFactory.FourierPhaseViewModel()); break;
+                case 2: ActivateItem(LinearRegressionPageView ??= _viewFactory.LinearRegressionPageViewModel()); break;
+                case 3: ActivateItem(PolynomialRegresionPageView ??= _viewFactory.PolynomialRegresionPageViewModel()); break;
+                case 4: ActivateItem(LinearCombinationPageView ??= _viewFactory.LinearCombinationPageViewModel()); break;
+                case 5: ActivateItem(CurvePageView ??= _viewFactory.CurvePageViewModel()); break;
+                case 6: ActivateItem(CurveFuncPageView ??= _viewFactory.CurveFuncPageViewModel()); break;
             }
         }
 
         private FourierTransformPageViewModel FourierTransformPageView;
+        private FourierPhaseViewModel FourierPhaseView;
         private LinearRegressionPageViewModel LinearRegressionPageView;
         private PolynomialRegresionPageViewModel PolynomialRegresionPageView;
         private LinearCombinationPageViewModel LinearCombinationPageView;

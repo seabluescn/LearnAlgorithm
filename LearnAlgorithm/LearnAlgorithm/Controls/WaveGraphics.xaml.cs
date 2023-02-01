@@ -64,7 +64,7 @@ namespace LearnAlgorithm.Controls
         {
             int PicWidth = 2000;
             int PicHeight = 800;
-            int Margin = 50;          
+            int Margin = 50;
             int YCenter = 400;
 
             //绘制外框
@@ -91,6 +91,8 @@ namespace LearnAlgorithm.Controls
 
             if (data != null && data.WaveData != null)
             {
+                
+
                 if (data.GraphicsType == GraphicsType.Wave)
                 {
                     //绘制X坐标
@@ -98,7 +100,7 @@ namespace LearnAlgorithm.Controls
                     {
                         int X = Margin + i * PicWidth / 10;
                         int Y1 = Margin + PicHeight + 10;
-                        FormattedText text = new FormattedText($"{i * 10}ms", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
+                        FormattedText text = new FormattedText($"{i * 100 * data.sampletime}ms", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White, VisualTreeHelper.GetDpi(this).PixelsPerDip);
                         ctx.DrawText(text, new Point(X - 20, Y1));
                     }
 
@@ -126,19 +128,21 @@ namespace LearnAlgorithm.Controls
                 }
                 else
                 {
+                    double rate = 1 / data.sampletime;
+
                     //绘制X坐标
                     for (int i = 0; i <= 5; i++)
                     {
                         int X = Margin + i * 40;
                         int Y1 = Margin + PicHeight + 10;
-                        FormattedText text = new FormattedText($"{i*100}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
+                        FormattedText text = new FormattedText($"{i * rate * 10}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
                         ctx.DrawText(text, new Point(X - 10, Y1));
                     }
                     for (int i = 2; i <= 10; i++)
                     {
                         int X = Margin + i * 200;
                         int Y1 = Margin + PicHeight + 10;
-                        FormattedText text = new FormattedText($"{(double)i / 2:0.0}k", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
+                        FormattedText text = new FormattedText($"{(double)i * rate / 20:0.00}k", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
                         ctx.DrawText(text, new Point(X - 10, Y1));
                     }
 
@@ -146,7 +150,7 @@ namespace LearnAlgorithm.Controls
                     if (DataMax == 0) DataMax = 1;
 
                     //绘制Y坐标
-                    for (int i =0; i <= 10; i++)
+                    for (int i = 0; i <= 10; i++)
                     {
                         int Y = Margin + PicHeight - i * 80;
                         FormattedText textMax = new FormattedText($"{i * DataMax / 10:0.#}", CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface(new FontFamily("宋体"), FontStyles.Normal, FontWeights.Thin, FontStretches.Normal), 20, Brushes.White);
